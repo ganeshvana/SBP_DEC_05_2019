@@ -1,0 +1,17 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+	<data>
+		<record id="production_category_rule" model="ir.rule">
+	        <field name="name">Production category Restriction Rule</field>
+	        <field name="model_id" ref="mrp.model_mrp_production"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|','|', '|', ('product_id.categ_id', 'in', []), ('product_id.categ_id', 'child_of', user.category_ids.ids), ('product_id', 'in', []), ('product_id', 'in', user.product_ids.ids)]</field>
+	    </record>
+	    <record id="purchase_category_rule" model="ir.rule">
+	        <field name="name">Purchase category Restriction Rule</field>
+	        <field name="model_id" ref="purchase.model_purchase_order"/>
+	        <field name="global" eval="True"/>
+	        <field name="domain_force">['|','|', '|', ('order_line.product_id.categ_id', 'in', []), ('order_line.product_id.categ_id', 'in', user.category_ids.ids),('order_line.product_id', 'in', []), ('order_line.product_id', 'in', user.product_ids.ids)]</field>
+	    </record>
+	</data>
+</odoo>
